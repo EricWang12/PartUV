@@ -1,0 +1,299 @@
+/* ──────────────────────────────────────────────────────────────
+   PartUV Results — Clean & Modern (drop-in)
+   Works with your existing HTML structure.
+   ────────────────────────────────────────────────────────────── */
+
+:root{
+    /* Light theme */
+    --bg:        #f6f7fb;
+    --surface:   #ffffff;
+    --elev-1:    #fafafa;
+    --text:      #0e1116;
+    --muted:     #5b6472;
+    --accent:    #3b82f6;
+    --hairline:  #e6e8ec;           /* subtle borders */
+    --chip:      #eef3ff;           /* metric chip bg */
+    --ring:      rgba(59,130,246,.35);
+
+    --shadow-xs: 0 .5px 1px rgba(0,0,0,.06);
+    --shadow-sm: 0 2px 12px rgba(0,0,0,.08);
+    --shadow-md: 0 8px 30px rgba(0,0,0,.12);
+}
+
+@media (prefers-color-scheme: dark){
+    :root{
+        --bg:       #0b0f14;
+        --surface:  #0f141b;
+        --elev-1:   #111821;
+        --text:     #e8eef6;
+        --muted:    #9aa3ad;
+        --accent:   #60a5fa;
+        --hairline: #203040;
+        --chip:     #132035;
+        --ring:     rgba(96,165,250,.38);
+
+        --shadow-xs: 0 .5px 1px rgba(0,0,0,.35);
+        --shadow-sm: 0 2px 12px rgba(0,0,0,.35);
+        --shadow-md: 0 8px 30px rgba(0,0,0,.45);
+    }
+}
+
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+
+body{
+    margin: 0 auto;
+    max-width: 1280px;
+    padding: 32px 20px 96px;
+    background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(59,130,246,.10), transparent 60%),
+        radial-gradient(1200px 600px at 90% -20%, rgba(16,185,129,.08), transparent 60%),
+        var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+h1{
+    margin: 0 0 18px;
+    font-size: clamp(1.35rem, 1rem + 1.6vw, 2.2rem);
+    letter-spacing: .2px;
+}
+
+h2{
+    font-size: clamp(1.05rem, .95rem + .6vw, 1.35rem);
+    letter-spacing: .2px;
+    color: var(--text);
+}
+
+h3{
+    margin: .2rem 0 .4rem;
+    font-size: 1.05rem;
+}
+
+/* Sections: soft dividers + sticky dataset headers */
+.section{
+    margin: 48px 0;
+    padding-top: 4px;
+}
+.section + .section{
+    border-top: 1px solid var(--hairline);
+    padding-top: 24px;
+}
+.section > h2{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin: 0 0 14px;
+    padding: 10px 12px;
+    background: color-mix(in oklab, var(--bg) 80%, transparent);
+    backdrop-filter: blur(6px);
+    border-left: 4px solid var(--accent);
+    border-radius: 10px;
+}
+
+/* Horizontal carousels for methods (swipe/scroll) */
+.methods-row{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 8px 4px 14px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-gutter: stable both-edges;
+}
+
+/* Fade shadows at the edges to hint scrollability */
+.methods-row::before,
+.methods-row::after{
+    content:"";
+    position: sticky;
+    top: 0;
+    width: 28px;
+    flex: 0 0 28px;
+    pointer-events: none;
+    z-index: 5;
+}
+.methods-row::before{
+    left: 0;
+    background: linear-gradient(to right, var(--bg), transparent);
+}
+.methods-row::after{
+    right: 0;
+    background: linear-gradient(to left, var(--bg), transparent);
+}
+
+/* Card blocks */
+.method-block{
+    flex: 0 0 auto;
+    min-width: clamp(340px, 58vw, 520px);   /* shows ~2–3 cards on desktop */
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: var(--shadow-sm);
+    scroll-snap-align: start;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.method-block:hover{
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--ring);
+}
+
+/* Metrics paragraph → chip-like labels, tabular numbers */
+.method-block p{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    margin: .5rem 0 1rem;
+    align-items: baseline;
+    font-variant-numeric: tabular-nums;
+}
+.method-block p strong{
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: var(--chip);
+    border: 1px solid var(--hairline);
+    box-shadow: var(--shadow-xs);
+    font-weight: 600;
+    font-size: .88rem;
+}
+
+/* Mini gallery tiles */
+.metrics-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+}
+.metric{
+    background: var(--elev-1);
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: var(--shadow-xs);
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+.metric:hover{
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+.metric h4{
+    margin: 4px 0 8px;
+    font-weight: 600;
+    font-size: .95rem;
+    color: var(--muted);
+}
+.metric img{
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    aspect-ratio: 1;          /* consistent tile ratio */
+    object-fit: cover;
+}
+
+/* Timeout badge */
+.timeout-banner{
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c0392b;
+    text-align: center;
+    padding: .9rem 1rem;
+    border: 1px dashed rgba(192,57,43,.45);
+    background: rgba(192,57,43,.08);
+    border-radius: 12px;
+}
+
+/* Scrollbar styling (WebKit) */
+.methods-row::-webkit-scrollbar{ height: 8px; }
+.methods-row::-webkit-scrollbar-thumb{
+    background: linear-gradient(90deg, rgba(0,0,0,.18), rgba(0,0,0,.08));
+    border-radius: 6px;
+}
+/* .methods-row > .method-block:first-child .metrics-grid{
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-auto-rows: 2fr;
+  } */
+  
+/* Input Mesh (1st), Ours (2nd), Baselines (3rd+) */
+.methods-row .method-block:nth-child(1){ min-width: 560px; }
+.methods-row .method-block:nth-child(2){ min-width: 560px; }
+.methods-row .method-block:nth-child(n+3){ min-width: 420px; }
+
+/* Default: keep your auto-fill behavior for small widths */
+.methods-row .method-block:first-child .metrics-grid{
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  
+  /* On wider viewports, ensure a clean 3-up row */
+  @media (min-width: 980px){
+    /* Make the first card wide enough to fit 3×200px + gaps + padding */
+    .methods-row .method-block:first-child{ 
+      min-width: 680px; /* was 560px; tweak here if you want larger/smaller */
+    }
+    .methods-row .method-block:first-child .metrics-grid{
+      grid-template-columns: repeat(3, minmax(200px, 1fr));
+    }
+  }
+
+  .metric img{
+    aspect-ratio: 1; /* increase for taller tiles, decrease for shorter */
+  }
+  .metric img{ max-height: 220px; object-fit: cover; }
+
+
+  /* Two-row metrics layout: desktop = 3×2, mobile = 2×3 */
+.method-block .metric-chips{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(160px, 1fr));
+    gap: 8px 10px;
+    margin: .5rem 0 1rem;
+  }
+  
+  @media (max-width: 980px){
+    .method-block .metric-chips{
+      grid-template-columns: repeat(2, minmax(160px, 1fr));
+    }
+  }
+  
+  /* Chip styling (matches your existing aesthetic) */
+  .method-block .metric-chips .chip{
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--chip);
+    border: 1px solid var(--hairline);
+    box-shadow: var(--shadow-xs);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;              /* keeps label+value together */
+  }
+  
+  .method-block .metric-chips .chip strong{
+    font-weight: 600;
+    font-size: .88rem;
+  }
+  
+
+  /* Metrics: 3rd card and beyond → exactly two rows (3 chips per row) */
+.methods-row .method-block:nth-child(n+3) p{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 across → 2 rows for 6 items */
+  gap: 6px 10px; /* keep your spacing */
+  align-items: start;
+}
+
+/* Ignore the <br> in your markup so chips can tile */
+.methods-row .method-block:nth-child(n+3) p br{ display: none; }
+
+/* Make each chip fill its grid cell cleanly */
+/* .methods-row .method-block:nth-child(n+3) p strong{
+  width: 100%;
+} */
+

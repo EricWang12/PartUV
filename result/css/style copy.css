@@ -1,0 +1,113 @@
+body {
+    font-family: sans-serif;
+    margin: 40px;
+    background-color: #fafafa;
+    color: #333;
+}
+
+h1, h2, h3 {
+    color: #2a2a2a;
+}
+
+.section {
+    margin-bottom: 60px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.row {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.col {
+    flex: 1;
+    max-width: 30%;
+    margin: 10px;
+    background: white;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+/* Mini-gallery layout */
+.metrics-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;           /* space between tiles */
+}
+
+/* .metric {
+    flex: 1 1 20%;      
+    text-align: center;
+} */
+
+
+.metric {
+    flex: 0 0 220px;   /* 160 px + gap ⇒ card width scales with count */
+    text-align: center;
+}
+.metric img {
+    width: 100%;       /* exact fit inside the 160 px tile            */
+    height: auto;
+}
+
+.metric h4 {
+    margin: 6px 0 4px;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* ── Make the whole row scroll sideways ── */
+.methods-row {
+    display: flex;
+    flex-wrap: nowrap;      /* keep cards in one line            */
+    overflow-x: auto;       /* enable horizontal scroll          */
+    gap: 24px;              /* space between cards               */
+    padding-bottom: 8px;    /* room for scrollbar (optional)     */
+    scroll-behavior: smooth;/* smooth scrolling (nice UX)        */
+}
+
+/* ── Set a fixed card width so scrolling makes sense ── */
+/* .method-block {
+    flex: 0 0 480px;       
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,.05);
+} */
+
+/* .method-block — was 0 0 320px; now it sizes itself */
+.method-block {
+    flex: 0 0 auto;        /* auto width = “just big enough”          */
+    display: inline-flex;  /* so padding is part of intrinsic width   */
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,.05);
+}
+
+
+/* optional: hide ugly scrollbar in WebKit browsers */
+.methods-row::-webkit-scrollbar {
+    height: 6px;
+}
+.methods-row::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.timeout-banner{font-size:1.4rem;font-weight:700;color:#c00;text-align:center;padding:2rem 0;}

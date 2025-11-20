@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="PartUV: Part-Based UV Unwrapping of 3D Meshes — SIGGRAPH Asia 2025" />
+  <meta name="keywords" content="PartUV, UV unwrapping, 3D mesh, SIGGRAPH Asia 2025, geometry processing" />
+  <title>PartUV: Part-Based UV Unwrapping of 3D Meshes</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet" />
+
+  <!-- Bulma & Icons -->
+  <link rel="stylesheet" href="./static/css/bulma.min.css" />
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+  <link rel="stylesheet" href="./static/css/index.css" />
+  <link rel="icon" href="./static/images/hillbot_logo.jpeg" />
+
+  <!-- (Removed Google Analytics and unused JS/CSS) -->
+</head>
+<body>
+  <!-- Minimal Navbar (no extra links/dropdowns) -->
+<!--   <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#" aria-label="PartUV home">
+        <span class="icon"><i class="fas fa-cube"></i></span>
+        <span style="font-weight:600;margin-left:8px;">PartUV</span>
+      </a>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  </nav> -->
+
+  <!-- Hero / Title Block -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">PartUV: Part-Based UV Unwrapping of 3D Meshes</h1>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://www.zhaoningwang.com/">Zhaoning Wang</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://sarahweiii.github.io/">Xinyue Wei</a><sup>1, 2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://rshi.top/">Ruoxi Shi</a><sup>1, 2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://jetd.one/">Xiaoshuai Zhang</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://cseweb.ucsd.edu/~haosu/">Hao Su</a><sup>1, 2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://cseweb.ucsd.edu/~mil070/">Minghua Liu</a><sup>1</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Hillbot Inc.</span>
+              <span class="author-block"><sup>2</sup>University of California, San Diego</span>
+            </div>
+
+            <div class="is-size-4" style="margin-top:0.5rem;">
+              SIGGRAPH Asia 2025
+            </div>
+
+            <!-- Links: ONLY arXiv, Video, Code -->
+            <div class="column has-text-centered" style="margin-top:1.25rem;">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="static/partuv.pdf" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <!-- ArXiv -->
+                <span class="link-block">
+                  <!-- TODO: Replace # with your arXiv abstract page URL -->
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="ai ai-arxiv"></i></span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Video -->
+                <span class="link-block">
+                  <!-- TODO: Replace # with your YouTube/Bilibili/etc. video URL -->
+                  <a href="" class="external-link button is-normal is-rounded is-dark"><span class="icon"><i class="fab fa-youtube"></i></span>
+                    <span>Video</span>
+                  </a>
+                </span>
+                <!-- Code -->
+                <span class="link-block">
+                  <!-- TODO: Replace # with your GitHub repository URL -->
+                  <a href="https://github.com/EricWang12/PartUV" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- (Removed teaser, carousels, visual-effects/matting/animation, related links, dataset, etc.) -->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img src="./static/images/partuv_teaser.png" alt="PartUV method overview" />
+        <!-- <h2 class="subtitle has-text-centered">
+          <span class="dnerf">PartUV</span> Part-Based UV Unwrapping of 3D Meshes
+        </h2> -->
+        <p>
+          <!-- <strong> -->
+          <span style="font-size: 1.15em;">
+          We propose PartUV, a novel part-based UV unwrapping method for 3D meshes. Unlike traditional approaches that rely only on local geometric priors and often produce over-fragmented charts, PartUV combines learned part priors with geometric cues to generate a compact set of part-aligned charts. We evaluate our method on four diverse datasets, and show that it produces significantly less fragmented UV mappings while maintaining low distortion comparable to baseline methods. Leveraging part-aware charts further enables applications such as generating one UV atlas per semantic part.
+          </span>
+          <!-- </strong> -->
+          </p>
+          
+      </div>
+    </div>
+  </section>
+  
+
+  <section class="section" id="video">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Video</h2>
+          <div class="publication-video">
+            <div class="video-container">
+              <!-- TODO: Replace VIDEO_ID with your actual YouTube ID -->
+              <!-- <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&amp;showinfo=0"
+                      title="PartUV video"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen></iframe> -->
+              <video src="./static/video/partuv_yt.mp4" controls></video>
+            </div>
+          </div>
+          <!-- <p class="has-text-grey is-size-6" style="margin-top:0.5rem;">Watch on YouTube or play inline above.</p> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Optional BibTeX (kept minimal). Delete if undesired. -->
+  <section class="section" id="abstract">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified"><p>UV unwrapping flattens 3D surfaces to 2D with minimal distortion, often requiring the complex surface to be decomposed into multiple charts. Although extensively studied, existing UV unwrapping methods frequently struggle with AI-generated or reconstructed meshes, which are typically noisy, bumpy, and poorly conditioned. These methods often produce highly fragmented charts and suboptimal boundaries, introducing artifacts and hindering downstream tasks. We introduce <strong>PartUV</strong>, a part-based UV unwrapping pipeline that generates significantly fewer, part-aligned charts while maintaining low distortion. Built on top of a recent learning-based part decomposition method <em>PartField</em>, PartUV combines high-level semantic part decomposition with novel geometric heuristics in a top-down recursive framework. It ensures each chart’s distortion remains below a user-specified threshold while minimizing the total number of charts. The pipeline integrates and extends parameterization and packing algorithms, incorporates dedicated handling of non-manifold and degenerate meshes, and is extensively parallelized for efficiency. Evaluated across four diverse datasets—including man-made, CAD, AI-generated, and Common Shapes—PartUV outperforms existing tools and recent neural methods in chart count and seam length, achieves comparable distortion, exhibits high success rates on challenging meshes, and enables new applications like part-specific multi-tiles packing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+  </section>
+
+<section class="section" id="Results">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">Results</h2>
+        <p style="text-align: left;">
+          <!-- Fancy swipeable results preview -->
+          <div class="pv-gallery">
+            <button class="pv-nav pv-prev" aria-label="Previous">‹</button>
+            <div class="pv-track" id="pvTrack" aria-live="polite"></div>
+            <button class="pv-nav pv-next" aria-label="Next">›</button>
+          </div>
+          Our part-based method not only achieves significantly fewer charts while maintaining low distortion, but also enables part-based organization, where charts from the same part are packed near each other for better clarity.
+          <br><br>For a detailed view of the results, please
+          <a href="./result/index.html" style="text-decoration: underline; color: #3273dc;">click here</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+  <br>
+  </section>
+
+  <section class="hero teaser" id="method">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <h2 class="title is-3 has-text-centered">Method Overview</h2>
+        <img src="./static/images/partuv_pipeline.png" alt="PartUV pipeline" />
+        <p style="text-align: left;">
+          <!-- <strong>Pipeline of PartUV.</strong> -->
+            Given a mesh <em>M</em>, we first apply the learning-based method PartField to predict a part-aware feature field. Clustering this field produces a hierarchical part tree <em>T</em> for the input mesh. We then recursively traverse <em>T</em> starting from the root. For each visited node <em>P</em>, we apply two geometry-based strategies to segment the corresponding part mesh into a set of charts <em>C</em>. Each chart is flattened using the ABF algorithm, and its distortion is evaluated. If the distortion exceeds a user-specified threshold <em>τ</em>, we recurse into the left and right children of <em>T</em>; otherwise, we adopt the segmented charts and their UV mappings for that part mesh.
+
+        </p>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="applications">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Applications and Additional Comparisons</h2>
+          <p class="has-text-grey is-size-6" style="margin-bottom:0.75rem;">
+            Please swipe or use the arrows to browse five example applications.
+          </p>
+  
+          <div class="apps-gallery" role="region" aria-label="Applications carousel">
+            <button class="apps-nav apps-prev" aria-label="Previous application">‹</button>
+            <div class="apps-track" id="appsTrack" aria-live="polite"></div>
+            <button class="apps-nav apps-next" aria-label="Next application">›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@inproceedings{wang2025partuv,
+  title     = {PartUV: Part-Based UV Unwrapping of 3D Meshes},
+  author    = {Wang, Zhaoning and Wei, Xinyue and Shi, Ruoxi and Zhang, Xiaoshuai and Su, Hao and Liu, Minghua},
+  booktitle = {ACM SIGGRAPH Asia Conference and Exhibition on Computer Graphics and Interactive Techniques},
+  year      = {2025}
+}</code></pre>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <!-- (Optional) Keep a small credit to the template source. -->
+        <p style="opacity:0.8;">
+          Site template adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and released under
+          <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Minimal JS for icons (if needed) -->
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script>
+  (function() {
+    // ---- CONFIG ----
+    const BASE = './result/shapes_resized_512';
+
+    // Picked first five; edit freely later:
+    const SAMPLE_IDS = [
+      '00000020_ad34a3f60c4a4caa99646600_trimesh_000',
+      'f45ac2100d2342fa8ab39d38d0f874ba',
+      '00000036_b169abf5f2444251b529c688_trimesh_000',
+      'max-planck',
+      '9f43d0ac857541e8a3a92e20ba284c44',
+      '00000103_52f7124261ae4c558f800775_trimesh_000',
+      'igea',
+      'table',
+      '0c3ca2b32545416f8f1e6f0e87def1a6',
+
+    ];
+
+    // Per-card rows. Add/remove or tweak stems as needed.
+    const VARIANTS = [
+      { label: 'PartUV', badge: 'Part mesh', stems: ['render_0', 'render_original_0', 'render'], exts: ['.png','.jpg','.jpeg'] },
+      { label: 'PartUV', badge: 'UV map', stems: ['all_uv','all_uv_layout','all_uvs'], exts: ['.jpg','.png','.jpeg'] },
+      { label: 'PartUV', badge: 'distortion', stems: ['distortion'], exts: ['.jpg','.png','.jpeg'] },
+      { label: 'blender', badge: 'distortion', stems: ['blender_output','blender_output_default'], exts: ['.jpg','.png','.jpeg'] },
+      { label: 'xatlas', badge: 'distortion', stems: ['xatlas_output'], exts: ['.jpg','.png','.jpeg'] },
+    ];
+
+    // ---- DOM helpers ----
+    const track = document.getElementById('pvTrack');
+    const make = (tag, cls, html) => {
+      const el = document.createElement(tag);
+      if (cls) el.className = cls;
+      if (html !== undefined) el.innerHTML = html;
+      return el;
+    };
+
+    function buildCard(id) {
+      const card = make('article','pv-card');
+      const header = make('div','pv-card-header', id);
+      const body = make('div','pv-card-body');
+
+      VARIANTS.forEach(v => {
+        const row = make('div','pv-row');
+        const rowHead = make('div','pv-row-header',
+          `<span>${v.label}</span><span class="pv-badge">${v.badge}</span>`);
+        const fig = make('div','pv-figure');
+        const img = new Image();
+        img.loading = 'lazy';
+        fig.appendChild(img);
+        row.appendChild(rowHead);
+        row.appendChild(fig);
+        body.appendChild(row);
+
+        // Attempt stems × exts until one loads, else show N/A
+        const candidates = [];
+        v.stems.forEach(st => v.exts.forEach(ext => {
+          candidates.push(`${BASE}/${id}/${st}${ext}`);
+        }));
+        attemptLoad(img, candidates, 0, row);
+      });
+
+      card.appendChild(header);
+      card.appendChild(body);
+      return card;
+    }
+
+    function attemptLoad(img, list, idx, rowEl) {
+      if (idx >= list.length) {
+        // Show N/A panel
+        const na = make('div','pv-na','N/A');
+        img.replaceWith(na);
+        return;
+      }
+      img.dataset.candIdx = String(idx);
+      img.onerror = () => {
+        const next = parseInt(img.dataset.candIdx || '0', 10) + 1;
+        attemptLoad(img, list, next, rowEl);
+      };
+      img.src = list[idx];
+    }
+
+    // Build cards
+    SAMPLE_IDS.forEach(id => track.appendChild(buildCard(id)));
+
+    // Nav & swipe
+    const prevBtn = document.querySelector('.pv-prev');
+    const nextBtn = document.querySelector('.pv-next');
+
+    function scrollByCards(dir = 1) {
+      // Scroll approx one card width (visible)
+      const firstCard = track.querySelector('.pv-card');
+      if (!firstCard) return;
+      const step = firstCard.getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap || '16');
+      track.scrollBy({ left: dir * step, behavior: 'smooth' });
+    }
+    prevBtn.addEventListener('click', () => scrollByCards(-1));
+    nextBtn.addEventListener('click', () => scrollByCards(1));
+
+    // Drag / swipe
+    let isDown = false, startX = 0, startScroll = 0;
+    track.addEventListener('pointerdown', e => {
+      isDown = true; startX = e.clientX; startScroll = track.scrollLeft; track.setPointerCapture(e.pointerId);
+    });
+    track.addEventListener('pointermove', e => {
+      if (!isDown) return;
+      const dx = e.clientX - startX;
+      track.scrollLeft = startScroll - dx;
+    });
+    const endDrag = () => { isDown = false; };
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointerleave', endDrag);
+
+
+        // ==== APPLICATIONS ====
+        const APPS = [
+        {
+          img: './static/images/apps/partuv_multi_packing.png',
+          title: 'Multi-Atlas Packing',
+          desc: 'Our part-based UV unwrapping can automatically pack all charts into a single atlas or multiple atlases by semantic part, aiding tasks such as 2D editing.'
+        },
+        {
+          img: './static/images/apps/partuv_threshold.png',
+          title: 'Distortion Thresholding',
+          desc: 'We support using a user-specified distortion threshold to balance distortion against the number of charts.'
+        },
+        {
+          img: './static/images/apps/partuv_logo.png',
+          title: 'Texture Editing',
+          desc: 'Unlike baseline methods that generate overly fragmented UV maps and hinder 2D texture editing, PartUV produces significantly fewer charts with part-aligned boundaries, enabling easier 2D editing.'
+        },
+        {
+          img: './static/images/apps/partuv_texture.png',
+          title: 'Texture Replacement',
+          desc: 'Our UV map enables easy texture replacement, whereas the UV maps from xatlas and Blender cause severe artifacts due to over-segmentation.'
+        },
+        {
+          img: './static/images/apps/partuv_baking.png',
+          title: 'Texture Map Comparison',
+          desc: 'We compare the texture maps produced with PartUV-generated UVs to those generated by other methods. PartUV yields fewer charts, and its chart boundaries are better aligned with semantic part boundaries.'
+        }
+
+      ];
+  
+      const appsTrack = document.getElementById('appsTrack');
+      function buildAppCard(app) {
+        const card = make('article','app-card');
+        const fig  = make('div','app-figure');
+        const img  = new Image();
+        img.loading = 'lazy';
+        img.alt = app.title;
+        img.src = app.img;
+        fig.appendChild(img);
+  
+        const cap = make('div','app-caption', `<h3>${app.title}</h3><p>${app.desc}</p>`);
+        card.appendChild(fig);
+        card.appendChild(cap);
+        return card;
+      }
+      if (appsTrack) {
+        APPS.forEach(a => appsTrack.appendChild(buildAppCard(a)));
+  
+        const appsPrev = document.querySelector('.apps-prev');
+        const appsNext = document.querySelector('.apps-next');
+  
+        function scrollApps(dir = 1) {
+          const first = appsTrack.querySelector('.app-card');
+          if (!first) return;
+          const step = first.getBoundingClientRect().width + parseFloat(getComputedStyle(appsTrack).gap || '16');
+          appsTrack.scrollBy({ left: dir * step, behavior: 'smooth' });
+        }
+        appsPrev.addEventListener('click', () => scrollApps(-1));
+        appsNext.addEventListener('click', () => scrollApps(1));
+  
+        // Drag / swipe
+        let aDown = false, aStartX = 0, aStartScroll = 0;
+        appsTrack.addEventListener('pointerdown', e => {
+          aDown = true; aStartX = e.clientX; aStartScroll = appsTrack.scrollLeft; appsTrack.setPointerCapture(e.pointerId);
+        });
+        appsTrack.addEventListener('pointermove', e => {
+          if (!aDown) return;
+          const dx = e.clientX - aStartX;
+          appsTrack.scrollLeft = aStartScroll - dx;
+        });
+        const aEnd = () => { aDown = false; };
+        appsTrack.addEventListener('pointerup', aEnd);
+        appsTrack.addEventListener('pointerleave', aEnd);
+      }
+  
+
+  })();
+  </script>
+</body>
+</html>
