@@ -53,7 +53,7 @@ conda activate partuv
 pip install torch==2.7.1 --index-url https://download.pytorch.org/whl/cu128
 pip install torch-scatter -f https://data.pyg.org/whl/torch-2.7.1+cu128.html
 
-# 3) Install project requirements and local wheel
+# 3) Install project requirements
 pip install -r requirements.txt
 pip install partuv
 ```
