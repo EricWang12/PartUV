@@ -5,16 +5,19 @@
 <p align="center">
 <a href="https://arxiv.org/pdf/2511.16659"><img src="https://img.shields.io/badge/arXiv-Paper-red?logo=arxiv&logoColor=white" alt="arXiv"></a>
 <a href="https://www.zhaoningwang.com/PartUV"><img src="https://img.shields.io/badge/Project_Page-Website-green?logo=googlechrome&logoColor=white" alt="Project Page"></a>
+<a href="https://drive.google.com/file/d/13rGYMHmu_PAPHdmzA-6S728nivk095QJ/view?usp=sharing"><img src="https://img.shields.io/badge/Benchmark_Dataset-Google_Drive-4285F4?logo=googledrive&logoColor=white" alt="Dataset"></a>
 </p>
 
 Official implementation of ***PartUV: Part-Based UV Unwrapping of 3D Meshes***.
 <p align="center"><img src="doc/partuv_teaser.png" width="100%"></p>
+
 ---
 
 <!-- TOC -->
 <details open>
   <summary><strong>Table of Contents</strong></summary>
 
+- [Paper & Dataset](#paper--dataset)
 - [Installation](#installation)
   - [PartUV (for UV Unwrapping)](#partuv-for-uv-unwrapping)
   - [Packing with bpy (optional)](#packing-with-bpy-optional)
