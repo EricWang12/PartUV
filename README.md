@@ -45,6 +45,9 @@ Official implementation of ***PartUV: Part-Based UV Unwrapping of 3D Meshes***.
 - [✅] Multi-atlas packing with uvpackmaster
 
 
+## 🎨 Shoutouts
+* Shoutouts to [UVgami](https://github.com/danielboxer/UVgami) brings partuv to Blender addon! Could be a great way to use within Blender!
+
 # Installation
 
 ## PartUV (for UV Unwrapping)
